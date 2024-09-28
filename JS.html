@@ -1,0 +1,65 @@
+<script>
+    window.addEventListener('load',cargaDatalists);
+
+    function cargaDatalists()
+    {
+       google.script.run
+       .withSuccessHandler(cargaAlumnos)
+       .withFailureHandler(proc=>{alert("   \n  ERROR AL CARGAR LISTA DE ALUMNOS /n **** **** ")})
+       .DataAlumnos();
+    }
+
+    function cargaAlumnos(dataAlumnos)
+    {
+        const inputAlumnos=document.getElementById("datalistOptions");
+        dataAlumnos.sort();
+        dataAlumnos.forEach(alumno => {
+            const ilara=document.createElement('option');
+            ilara.value=alumno[0];
+            inputAlumnos.appendChild(ilara);
+        });
+    }
+
+    function actualiza()
+    {
+        event.preventDefault();
+        var msg=document.getElementById('hproceso');
+        msg.innerHTML="Procesando...";
+        var alumnoSelec=document.getElementById('alumnosDataList').value;
+        
+        google.script.run
+       .withSuccessHandler(psswCambiada)
+       .withFailureHandler(proc=>{alert("   \n  ERROR AL CREAR LA NUEVA CONTRASEÑA /n **** **** ")})
+       .cambiaPsswAlumno(alumnoSelec);
+    }
+
+    function psswCambiada(werror)
+    {
+        
+        var headerAlumno="<tr><th>Correo Institucional</th></tr>";
+        var contenidoAlumno="<tr><td>"+werror[1]+"</td></tr>";
+
+        var header2="<tr><th>Contraseña Nueva</th></tr>";
+        var cont2="<tr><td>ceec1234</td></tr>";
+
+        var headAlu=document.getElementById('headerAlu');
+        var contAlu=document.getElementById('datosAlu');
+        var head2=document.getElementById('headerPssw');
+        var conten2=document.getElementById('datosPssw');
+        
+        headAlu.innerHTML="";
+        contAlu.innerHTML="";
+        head2.innerHTML="";
+        conten2.innerHTML="";
+        
+        headAlu.innerHTML=headerAlumno;
+        contAlu.innerHTML=contenidoAlumno;
+        head2.innerHTML=header2;
+        conten2.innerHTML=cont2;
+
+        var msg=document.getElementById('hproceso');
+        msg.innerHTML="";
+        alert("   \n  todo bien \n **** **** ");
+        
+    }
+</script>

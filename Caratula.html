@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cambio de contraseña</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <?!= include('CSS') ?><!--*** INCLUIR INCLUDE EN FUNCIONES.JS***-->
+    </head>
+
+    <body>
+        <div class="encabeza">
+            <h1 class="titulo">Cambio de Contraseña</h1>
+        </div>
+
+        <div class="msg">
+            <table>
+                <thead id="hproceso"></thead>
+            </table>
+        </div>
+
+        <p style="color: dodgerblue; size: 8px; margin-left: 50px; margin-right: 50px;">
+            Ingresa algún texto para la búsqueda del alumno</p>
+
+        <form id="formManto" onsubmit="actualiza(this)"><!-- Nombre del Formulario -->
+            <div class="formulario">
+                <div class="nombreAlumno">
+                    <label for="alumnosDataList" class="form-label">Alumno</label>
+                    <br>
+                    <input class="form-control"
+                    id="alumnosDataList"
+                    list="datalistOptions"
+                    placeholder="Escribe para inicar búsqueda..."
+                    size="40" required>
+                    <datalist id="datalistOptions"></datalist>
+                </div>
+            </div>
+
+            <button class="boton" type="submit">Actualiza</button>
+        </form>
+
+        <!-- TABLA QUE MUESTRA LOS RESULTADOS -->
+         <table>
+            <thead id="headerAlu"></thead>
+            <tbody id="datosAlu"></tbody>
+         </table>
+         <table>
+            <thead id="headerPssw"></thead>
+            <tbody id="datosPssw"></tbody>
+         </table>
+        <?!= include('JS') ?><!--Aqui se indica el script lado cliente-->
+    </body>
+</html>
